@@ -5,12 +5,11 @@ import KudoBoardTile from './components/KudoBoardTile'
 import './App.css'
 
 function App() {
-
   return (
     <div className="App">
-      <KudoBoardTile/>
-      <KudoBoardTile/>
-      <KudoBoardTile/>
+      <KudoBoardTile />
+      <KudoBoardTile />
+      <KudoBoardTile />
     </div>
   )
 }
