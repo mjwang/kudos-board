@@ -13,7 +13,7 @@ const getBoards = async () => {
 const getBoardById = async (id) => {
   const board = await prisma.board.findUnique({
     where: {
-      id: id,
+      id: parseInt(id),
     },
     include: {
       cards: true,
@@ -40,20 +40,18 @@ const createBoard = async ({ title, category, author }) => {
 const updateBoard = async (id, updatedBoardData) => {
   const board = await prisma.board.findUnique({
     where: {
-      id: id,
+      id: parseInt(id),
     },
   })
 
   if (board) {
     const updatedBoard = await prisma.board.update({
       where: {
-        id: id,
+        id: parseInt(id),
       },
-      update: {
-        data: {
-          ...board,
-          ...updatedBoardData,
-        },
+      data: {
+        ...board,
+        ...updatedBoardData,
       },
     })
     return updatedBoard
@@ -65,7 +63,7 @@ const updateBoard = async (id, updatedBoardData) => {
 const deleteBoardById = async (id) => {
   const deletedBoard = await prisma.board.delete({
     where: {
-      id: id,
+      id: parseInt(id),
     },
   })
   return deletedBoard

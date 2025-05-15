@@ -4,6 +4,7 @@ const {
   deleteBoardById,
   getBoards,
   getBoardById,
+  updateBoard,
 } = require('../service/boardService')
 
 const boardRoutes = express.Router()
@@ -45,12 +46,12 @@ boardRoutes.patch('/:id', async (req, res) => {
   const { id } = req.params
   const updatedBoardData = req.body
 
-  const board = await getBoardById(id)
+  const updatedBoard = await updateBoard(id, updatedBoardData)
 
-  if (!board) {
+  if (!updatedBoard) {
     res.status(404).send('Board not found')
   } else {
-    await updateBoard(id, updatedBoardData)
+    res.status(200).send(updatedBoard)
   }
 })
 
@@ -60,7 +61,7 @@ boardRoutes.delete('/:id', async (req, res) => {
   const deletedBoard = await deleteBoardById(id)
 
   if (deletedBoard) {
-    res.status(204).send(deletedBoard)
+    res.status(200).send(deletedBoard)
   } else {
     res.status(400).send('No board deleted')
   }
