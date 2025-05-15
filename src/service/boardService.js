@@ -2,11 +2,7 @@ const { PrismaClient } = require('../../generated/prisma')
 const prisma = new PrismaClient()
 
 const getBoards = async () => {
-  const boards = await prisma.board.findMany({
-    include: {
-      cards: true,
-    },
-  })
+  const boards = await prisma.board.findMany()
   return boards
 }
 
@@ -35,6 +31,21 @@ const createBoard = async ({ title, category, author }) => {
   })
 
   return newBoard
+}
+
+const addCard = async (boardId, { title, description, author, gifUrl }) => {
+  const newCard = await prisma.card.create({
+    data: {
+      title,
+      description,
+      author,
+      gifUrl,
+      upvoteCount: 1,
+      boardId: parseInt(boardId),
+    },
+  })
+
+  return newCard
 }
 
 const updateBoard = async (id, updatedBoardData) => {
@@ -70,6 +81,7 @@ const deleteBoardById = async (id) => {
 }
 
 module.exports = {
+  addCard,
   createBoard,
   deleteBoardById,
   getBoards,
