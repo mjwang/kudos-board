@@ -72,12 +72,20 @@ const updateBoard = async (id, updatedBoardData) => {
 }
 
 const deleteBoardById = async (id) => {
-  const deletedBoard = await prisma.board.delete({
+  const deleteCards = prisma.card.deleteMany({
+    where: {
+      boardId: parseInt(id),
+    },
+  })
+
+  const deleteBoard = prisma.board.delete({
     where: {
       id: parseInt(id),
     },
   })
-  return deletedBoard
+
+  const transaction = await prisma.$transaction([deleteCards, deleteBoard])
+  return transaction
 }
 
 module.exports = {

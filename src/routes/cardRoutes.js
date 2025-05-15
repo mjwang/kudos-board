@@ -7,8 +7,8 @@ cardRoutes.patch('/:id/upvote', async (req, res) => {
   const { id } = req.params
 
   try {
-    upvoteCardById(id)
-    return res.status(204)
+    const upvotedCard = await upvoteCardById(id)
+    return res.status(204).send(upvotedCard.upvoteCount)
   } catch (error) {
     return res.status(500).json({ error: `Unable to upvote card ${id}` })
   }

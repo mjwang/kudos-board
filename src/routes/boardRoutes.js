@@ -67,7 +67,7 @@ boardRoutes.post('/', async (req, res) => {
   }
 })
 
-boardRoutes.post('/:id/cards/', async (req, res) => {
+boardRoutes.post('/:id/cards', async (req, res) => {
   const { id } = req.params
 
   try {
@@ -110,6 +110,7 @@ boardRoutes.delete('/:id', async (req, res) => {
       res.status(400).send('No board deleted')
     }
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: `Unable to delete board ${id}` })
   }
 })

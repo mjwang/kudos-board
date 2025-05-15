@@ -9,11 +9,13 @@ datasource db {
 }
 
 model Board {
-  id       Int    @id @default(autoincrement())
-  title    String
-  category String
-  author   String
-  cards    Card[]
+  id        Int    @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  category  String
+  author    String
+  cards     Card[]
 }
 
 model Card {

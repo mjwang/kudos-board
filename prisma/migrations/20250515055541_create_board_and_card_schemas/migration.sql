@@ -1,6 +1,8 @@
 -- CreateTable
 CREATE TABLE "Board" (
     "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "title" TEXT NOT NULL,
     "category" TEXT NOT NULL,
     "author" TEXT NOT NULL,
@@ -12,6 +14,7 @@ CREATE TABLE "Board" (
 CREATE TABLE "Card" (
     "id" SERIAL NOT NULL,
     "boardId" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "author" TEXT NOT NULL,
     "gifUrl" TEXT NOT NULL,
