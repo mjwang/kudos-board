@@ -21,7 +21,6 @@ boardRoutes.get('/:id', async (req, res) => {
 })
 
 boardRoutes.post('/', async (req, res) => {
-  console.log('CREATE BOARD', req.body)
   try {
     const { title, category, author } = req.body
 
@@ -31,8 +30,13 @@ boardRoutes.post('/', async (req, res) => {
       author,
     })
 
-    res.status(201).json(newBoard)
+    if (newBoard) {
+      res.status(201).json(newBoard)
+    } else {
+      res.status(400).json('No board updated')
+    }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: 'Internal Server Error' })
   }
 })
@@ -53,18 +57,12 @@ boardRoutes.patch('/:id', async (req, res) => {
 boardRoutes.delete('/:id', async (req, res) => {
   const { id } = req.params
 
-  const board = await getBoardById(id)
+  const deletedBoard = await deleteBoardById(id)
 
-  if (!board) {
-    res.status(404).send('Board not found')
+  if (deletedBoard) {
+    res.status(204).send(deletedBoard)
   } else {
-    const success = await deleteBoardById(id)
-
-    if (success) {
-      res.status(204).send()
-    } else {
-      res.status(400).send('No board deleted')
-    }
+    res.status(400).send('No board deleted')
   }
 })
 

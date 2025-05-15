@@ -1,39 +1,74 @@
-const kudosBoardData = require('../data/boards.js')
+const { PrismaClient } = require('../../generated/prisma')
+const prisma = new PrismaClient()
 
 const getBoards = async () => {
-  return kudosBoardData
+  const boards = await prisma.board.findMany({
+    include: {
+      cards: true,
+    },
+  })
+  return boards
 }
 
 const getBoardById = async (id) => {
-  return kudosBoardData.find((board) => board.id.toString() === id)
+  const board = await prisma.board.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      cards: true,
+    },
+  })
+  return board
 }
 
 const createBoard = async ({ title, category, author }) => {
-  const nextId = kudosBoardData.length + 1
-  const newBoard = {
-    id: nextId,
-    title,
-    category,
-    author,
-    cards: [],
-  }
-
-  kudosBoardData.push(newBoard)
+  const newBoard = await prisma.board.create({
+    data: {
+      title,
+      category,
+      author,
+      cards: {
+        create: [],
+      },
+    },
+  })
 
   return newBoard
 }
 
 const updateBoard = async (id, updatedBoardData) => {
-  const board = kudosBoardData.find((board) => board.id.toString() === id)
+  const board = await prisma.board.findUnique({
+    where: {
+      id: id,
+    },
+  })
 
   if (board) {
+    const updatedBoard = await prisma.board.update({
+      where: {
+        id: id,
+      },
+      update: {
+        data: {
+          ...board,
+          ...updatedBoardData,
+        },
+      },
+    })
+    return updatedBoard
+  } else {
+    return null
   }
 }
 
 const deleteBoardById = async (id) => {
-  kudosBoardData = kudosBoardData.filter((board) => board.id !== parseInt(id))
-
-  return kudosBoardData.some((board) => board.id === parseInt(id))
+  const deletedBoard = await prisma.board.delete({
+    where: {
+      id: id,
+    },
+  })
+  return deletedBoard
 }
 
 module.exports = {
