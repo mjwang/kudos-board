@@ -1,4 +1,4 @@
-let kudo_boards = [
+const kudosBoardData = [
   {
     id: 1,
     title: 'Congratulations!',
@@ -146,3 +146,5 @@ let kudo_boards = [
     ],
   },
 ]
+
+module.exports = kudosBoardData
