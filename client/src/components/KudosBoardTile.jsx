@@ -23,7 +23,7 @@ export default function KudosBoardTile({
         <span>{author}</span>
       </div>
       <div className="board-image">
-        <img src={`https://picsum.photos/id/${id + 162}/198/150`}/>
+        <img src={`https://picsum.photos/id/${id + 162}/198/150`} />
       </div>
       <div className="board-buttons">
         <Link to={`/boards/${id}`}>
