@@ -75,13 +75,13 @@ Deployed Application (**required**):
     - [x] Number of upvotes
     - [x] Delete button
 - [ ] **Add New Card**
-  - [ ] Users can make a new card associated with the current board.
+  - [x] Users can make a new card associated with the current board.
   - [ ] To successfully create a new card, users must specify the following:
-    - [ ] Text message (required).
+    - [x] Text message (required).
     - [ ] A gif found using the
           [GIPHY API](https://developers.giphy.com/docs/api/) (required).
-  - [ ] Users are given the option to specify the author of the card.
-  - [ ] When the new card is successfully created, it appears in the grid of
+  - [x] Users are given the option to specify the author of the card.
+  - [x] When the new card is successfully created, it appears in the grid of
         cards.
 - [x] **Upvote Card**
   - [x] Users can upvote a card.

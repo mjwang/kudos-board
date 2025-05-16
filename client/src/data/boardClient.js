@@ -60,6 +60,27 @@ export async function getBoardData(boardId) {
   return {}
 }
 
+export async function addCard(boardId, title, description, author, gifUrl) {
+  const addCardUrl = new URL(`/boards/${boardId}/cards`, apiUrl)
+
+  const data = await fetch(addCardUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      title,
+      description,
+      author,
+      gifUrl,
+    }),
+  })
+
+  if (data.status === 201) {
+    return data.json()
+  }
+}
+
 export async function upvoteCard(cardId) {
   const upvoteCardUrl = new URL(`/card/${cardId}/upvote`, apiUrl)
 
