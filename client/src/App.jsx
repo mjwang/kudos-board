@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import AddBoardForm from './components/AddBoardForm'
 import KudoBoardTile from './components/KudoBoardTile'
@@ -12,13 +12,19 @@ function App() {
   const [boards, setBoards] = useState([])
   const { isModalVisible, modalProps, closeModal, showModal } = useModal()
 
-  useEffect(() => {
+  const reloadBoards = useCallback(() => {
     getBoards().then((data) => {
       setBoards(data)
     })
   }, [])
 
-  const showAddBoardForm = () => showModal({})
+  useEffect(() => reloadBoards, [])
+
+  const onAddBoard = useCallback(() => {
+    closeModal()
+    reloadBoards()
+  }, [])
+  const showAddBoardForm = () => showModal({ afterFormSubmit: onAddBoard })
 
   return (
     <div className="App">
@@ -35,14 +41,16 @@ function App() {
             <KudoBoardTile
               key={board.id}
               title={board.title}
+              id={board.id}
               author={board.author}
+              handleBoardChange={reloadBoards}
             />
           ))}
         </div>
       </main>
       {isModalVisible && (
-        <Modal {...modalProps} handleClose={closeModal}>
-          <AddBoardForm />
+        <Modal handleClose={closeModal}>
+          <AddBoardForm {...modalProps} />
         </Modal>
       )}
     </div>

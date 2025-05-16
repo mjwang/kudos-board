@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
+import { createBoard } from '../data/boardClient'
+
 import './AddBoardForm.css'
 
 const BoardTypes = {
@@ -14,9 +16,9 @@ const BoardLabels = {
   [BoardTypes.INSPIRATION]: 'Inspiration',
 }
 
-export default function AddBoardForm() {
+export default function AddBoardForm({ afterFormSubmit }) {
   const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState(BoardTypes.CELEBRATION)
   const [author, setAuthor] = useState('')
 
   const handleTitleChange = useCallback((event) => {
@@ -33,7 +35,7 @@ export default function AddBoardForm() {
 
   const handleCreateBoard = useCallback((event) => {
     event.preventDefault()
-    // TODO: post request create board
+    createBoard(title, author, category).then(afterFormSubmit)
   })
 
   return (
@@ -76,6 +78,9 @@ export default function AddBoardForm() {
         className="submit-button"
       >
         Create Board
+      </button>
+      <button onClick={afterFormSubmit} type="button" className="cancel-button">
+        Cancel
       </button>
     </form>
   )

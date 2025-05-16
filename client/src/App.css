@@ -2,6 +2,7 @@
   background-color: white;
   color: black;
   box-sizing: border-box;
+  height: 100vh;
   text-align: center;
   width: 100%;
 }

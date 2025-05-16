@@ -1,8 +1,19 @@
 import React from 'react'
 
+import { deleteBoard } from '../data/boardClient'
+
 import './KudoBoardTile.css'
 
-export default function KudoBoardTile({ title, author }) {
+export default function KudoBoardTile({
+  id,
+  title,
+  author,
+  handleBoardChange,
+}) {
+  const handleDeleteBoard = () => {
+    deleteBoard(id).then(handleBoardChange)
+  }
+
   return (
     <div className="KudoBoardTile">
       <div className="board-details">
@@ -11,7 +22,9 @@ export default function KudoBoardTile({ title, author }) {
       </div>
       <div className="board-buttons">
         <button className="view-button">View</button>
-        <button className="delete-button">Delete</button>
+        <button className="delete-button" onClick={handleDeleteBoard}>
+          Delete
+        </button>
       </div>
     </div>
   )

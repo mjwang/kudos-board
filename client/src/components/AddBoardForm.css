@@ -1,5 +1,6 @@
 .AddBoardForm {
   align-items: start;
+  color: black;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -8,6 +9,7 @@
 }
 
 .category-dropdown {
+  background-color: white;
   border-radius: 4px;
   border: 1px solid black;
   color: black;
@@ -20,9 +22,22 @@
   margin-top: 24px;
 }
 
+.cancel-button {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+}
+
+.cancel-button:hover {
+  border: 1px solid black;
+  background-color: #eaeaea;
+}
+
 .text-box {
-  border: 1px solid #721694;
+  background-color: white;
+  border: 1px solid black;
   border-radius: 4px;
+  color: black;
   line-height: 24px;
   padding: 4px;
   width: 200px;
