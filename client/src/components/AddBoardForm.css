@@ -1,0 +1,29 @@
+.AddBoardForm {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.category-dropdown {
+  border-radius: 4px;
+  border: 1px solid black;
+  color: black;
+  line-height: 24px;
+  padding: 4px;
+  width: 150px;
+}
+
+.submit-button {
+  margin-top: 24px;
+}
+
+.text-box {
+  border: 1px solid #721694;
+  border-radius: 4px;
+  line-height: 24px;
+  padding: 4px;
+  width: 200px;
+}
