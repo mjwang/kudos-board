@@ -2,7 +2,8 @@
 
 Submitted by: **Michelle Wang**
 
-Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**):
+[Kudos Board Deployed Site](https://kudos-board-frontend-z68q.onrender.com/)
 
 ### Application Features
 
@@ -15,13 +16,13 @@ Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
     - [ ] Header
     - [ ] Banner
     - [ ] Search bar
-    - [ ] List of boards
+    - [x] List of boards
     - [ ] Footer
-- [ ] **Display Boards**
-  - [ ] Users can view a list of all boards in a grid view on the home page.
+- [ ] **Display Boards** -[x] Users can view a list of all boards in a grid view
+      on the home page.
   - [ ] For each board displayed, users can see:
     - [ ] An image/gif
-    - [ ] A board title
+    - [x] A board title
 - [ ] **Filter Boards**
   - [ ] Home page includes navigation bar, drop down, or some other mechanism
         which allows users to filter boards by the following categories:
@@ -49,19 +50,19 @@ Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
 - [ ] **View Board**
   - [ ] Users can click on a board in the grid view to navigate to a new page
         containing that board's details.
-- [ ] **Add New Board**
-  - [ ] Users can create a new board on the home page.
-  - [ ] When creating a new board, users can specify the:
-    - [ ] Title (required)
-    - [ ] Category (required)
-    - [ ] Author (optional)
-  - [ ] Items listed as required above must have a value to succesffuly create a
+- [x] **Add New Board**
+  - [x] Users can create a new board on the home page.
+  - [x] When creating a new board, users can specify the:
+    - [x] Title (required)
+    - [x] Category (required)
+    - [x] Author (optional)
+  - [x] Items listed as required above must have a value to succesffuly create a
         new board.
-  - [ ] When the board is successfully created, it appears in the grid of
+  - [x] When the board is successfully created, it appears in the grid of
         boards.
-- [ ] **Delete Board**
-  - [ ] User can delete boards on the home page.
-  - [ ] When the board is deleted, the board disappears from the grid of boards.
+- [x] **Delete Board**
+  - [x] User can delete boards on the home page.
+  - [x] When the board is deleted, the board disappears from the grid of boards.
 
 ##### Board Page
 

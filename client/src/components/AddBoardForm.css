@@ -42,3 +42,9 @@
   padding: 4px;
   width: 200px;
 }
+
+.validation-warning {
+  margin-top: 12px;
+  color: red;
+  font-size: 12px;
+}

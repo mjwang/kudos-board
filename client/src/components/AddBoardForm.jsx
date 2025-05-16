@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import { createBoard } from '../data/boardClient'
 
@@ -21,6 +21,8 @@ export default function AddBoardForm({ afterFormSubmit }) {
   const [category, setCategory] = useState(BoardTypes.CELEBRATION)
   const [author, setAuthor] = useState('')
 
+  const isFormValid = useMemo(() => Boolean(title), [title])
+
   const handleTitleChange = useCallback((event) => {
     setTitle(event.target.value)
   }, [])
@@ -41,7 +43,7 @@ export default function AddBoardForm({ afterFormSubmit }) {
   return (
     <form className="AddBoardForm" onSubmit={handleCreateBoard}>
       <h2>Create New Board</h2>
-      <label>Title</label>
+      <label>Title*</label>
       <input
         className="text-box"
         type="text"
@@ -57,7 +59,7 @@ export default function AddBoardForm({ afterFormSubmit }) {
         onChange={handleAuthorChange}
         placeholder={'Author'}
       />
-      <label>Category</label>
+      <label>Category*</label>
       <select
         className="category-dropdown"
         name="category"
@@ -72,7 +74,11 @@ export default function AddBoardForm({ afterFormSubmit }) {
           )
         })}
       </select>
+      {!isFormValid && (
+        <span className="validation-warning">*Required field</span>
+      )}
       <button
+        disabled={!isFormValid}
         onClick={handleCreateBoard}
         type="submit"
         className="submit-button"

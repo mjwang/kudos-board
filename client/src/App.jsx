@@ -48,6 +48,10 @@ function App() {
           ))}
         </div>
       </main>
+      <footer>
+        <span>@mjwang</span>
+        <span>codepath 2025</span>
+      </footer>
       {isModalVisible && (
         <Modal handleClose={closeModal}>
           <AddBoardForm {...modalProps} />
