@@ -18,10 +18,10 @@ Deployed Application (**required**):
     - [ ] Search bar
     - [x] List of boards
     - [x] Footer
-- [ ] **Display Boards** -[x] Users can view a list of all boards in a grid view
+- [x] **Display Boards** -[x] Users can view a list of all boards in a grid view
       on the home page.
-  - [ ] For each board displayed, users can see:
-    - [ ] An image/gif
+  - [x] For each board displayed, users can see:
+    - [x] An image/gif
     - [x] A board title
 - [ ] **Filter Boards**
   - [ ] Home page includes navigation bar, drop down, or some other mechanism
