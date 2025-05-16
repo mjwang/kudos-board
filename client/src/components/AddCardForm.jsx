@@ -9,7 +9,10 @@ export default function AddCardForm({ boardId, afterFormSubmit }) {
   const [gifUrl, setGifUrl] = useState('')
   const [author, setAuthor] = useState('')
 
-  const isFormValid = useMemo(() => description && gifUrl, [description, gifUrl])
+  const isFormValid = useMemo(
+    () => description && gifUrl,
+    [description, gifUrl],
+  )
 
   const handleTitleChange = useCallback((event) => {
     setTitle(event.target.value)

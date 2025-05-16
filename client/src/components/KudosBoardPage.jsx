@@ -32,7 +32,7 @@ export default function KudosBoardPage() {
   }, [])
 
   const showAddCardForm = useCallback(() => {
-    showModal({boardId: boardId, afterFormSubmit: onAddCard})
+    showModal({ boardId: boardId, afterFormSubmit: onAddCard })
   })
 
   return (
