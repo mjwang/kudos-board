@@ -1,63 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import AddBoardForm from './components/AddBoardForm'
-import KudoBoardTile from './components/KudoBoardTile'
-import Modal from './components/Modal'
-import useModal from './hooks/useModal'
-import { getBoards } from './data/boardClient'
+import KudosBoardsGrid from './components/KudosBoardsGrid'
+import KudosBoardPage from './components/KudosBoardPage'
 
 import './App.css'
 
 function App() {
-  const [boards, setBoards] = useState([])
-  const { isModalVisible, modalProps, closeModal, showModal } = useModal()
-
-  const reloadBoards = useCallback(() => {
-    getBoards().then((data) => {
-      setBoards(data)
-    })
-  }, [])
-
-  useEffect(() => reloadBoards, [])
-
-  const onAddBoard = useCallback(() => {
-    closeModal()
-    reloadBoards()
-  }, [])
-  const showAddBoardForm = () => showModal({ afterFormSubmit: onAddBoard })
-
   return (
-    <div className="App">
-      <header className="header">
-        <h1>Kudos Board App</h1>
-      </header>
-      <main className="content">
-        <div className="kudos-boards-container">
-          <div className="create-board-container" onClick={showAddBoardForm}>
-            <h2>Create New Board</h2>
-            <h1>+</h1>
-          </div>
-          {boards.map((board) => (
-            <KudoBoardTile
-              key={board.id}
-              title={board.title}
-              id={board.id}
-              author={board.author}
-              handleBoardChange={reloadBoards}
-            />
-          ))}
-        </div>
-      </main>
-      <footer>
-        <span>@mjwang</span>
-        <span>codepath 2025</span>
-      </footer>
-      {isModalVisible && (
-        <Modal handleClose={closeModal}>
-          <AddBoardForm {...modalProps} />
-        </Modal>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<KudosBoardsGrid />} />
+        <Route path="/boards/:boardId" element={<KudosBoardPage />} />
+      </Routes>
+    </Router>
   )
 }
 

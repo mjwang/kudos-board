@@ -15,7 +15,7 @@ export async function getBoards() {
 }
 
 export async function deleteBoard(id) {
-  const deleteBoardsUrl = `${boardsUrl}/${id}`
+  const deleteBoardsUrl = new URL(`/boards/${id}`, apiUrl)
 
   const data = await fetch(deleteBoardsUrl, {
     method: 'DELETE',
@@ -43,5 +43,47 @@ export async function createBoard(title, author, category) {
 
   if (data.status === 204) {
     return data.json()
+  }
+}
+
+export async function getBoardData(boardId) {
+  const getBoardUrl = new URL(`/boards/${boardId}`, apiUrl)
+
+  const data = await fetch(getBoardUrl, {
+    method: 'GET',
+  })
+
+  if (data.status === 200) {
+    return data.json()
+  }
+
+  return {}
+}
+
+export async function upvoteCard(cardId) {
+  const upvoteCardUrl = new URL(`/card/${cardId}/upvote`, apiUrl)
+
+  const data = await fetch(upvoteCardUrl, {
+    method: 'PATCH',
+  })
+
+  if (data.status === 204) {
+    return 'success'
+  }
+
+  return {}
+}
+
+export async function deleteCard(id) {
+  const deleteCardUrl = new URL(`/card/${id}`, apiUrl)
+
+  const data = await fetch(deleteCardUrl, {
+    method: 'DELETE',
+  })
+
+  if (data.status === 200) {
+    return data.json()
+  } else {
+    return data.error()
   }
 }

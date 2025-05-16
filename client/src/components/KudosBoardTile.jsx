@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 import { deleteBoard } from '../data/boardClient'
 
-import './KudoBoardTile.css'
+import './KudosBoardTile.css'
 
-export default function KudoBoardTile({
+export default function KudosBoardTile({
   id,
   title,
   author,
@@ -15,13 +17,15 @@ export default function KudoBoardTile({
   }
 
   return (
-    <div className="KudoBoardTile">
+    <div className="KudosBoardTile">
       <div className="board-details">
         <strong>{title}</strong>
         <span>{author}</span>
       </div>
       <div className="board-buttons">
-        <button className="view-button">View</button>
+        <Link to={`/boards/${id}`}>
+          <button className="view-button">View</button>
+        </Link>
         <button className="delete-button" onClick={handleDeleteBoard}>
           Delete
         </button>
