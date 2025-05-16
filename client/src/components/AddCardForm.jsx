@@ -38,38 +38,44 @@ export default function AddCardForm({ boardId, afterFormSubmit }) {
   return (
     <form className="AddCardForm" onSubmit={handleCreateCard}>
       <h2>Add Card</h2>
-      <label>Title</label>
-      <input
-        className="text-box"
-        type="text"
-        value={title}
-        onChange={handleTitleChange}
-        placeholder={'Title'}
-      />
-      <label>Author</label>
-      <input
-        className="text-box"
-        type="text"
-        value={author}
-        onChange={handleAuthorChange}
-        placeholder={'Author'}
-      />
-      <label>Message*</label>
-      <input
-        className="text-box"
-        type="text"
-        value={description}
-        onChange={handleMessageChange}
-        placeholder={'Message'}
-      />
-      <label>Gif URL*</label>
-      <input
-        className="text-box"
-        type="text"
-        value={gifUrl}
-        onChange={handleGifyUrlChange}
-        placeholder={'GIFY link'}
-      />
+      <div className="form-fields">
+        <div className="card-info">
+          <label>Title</label>
+          <input
+            className="text-box"
+            type="text"
+            value={title}
+            onChange={handleTitleChange}
+            placeholder={'Title'}
+          />
+          <label>Author</label>
+          <input
+            className="text-box"
+            type="text"
+            value={author}
+            onChange={handleAuthorChange}
+            placeholder={'Author'}
+          />
+        </div>
+        <div className="card-content">
+          <label>Message*</label>
+          <input
+            className="text-box"
+            type="text"
+            value={description}
+            onChange={handleMessageChange}
+            placeholder={'Message'}
+          />
+          <label>Gif URL*</label>
+          <input
+            className="text-box"
+            type="text"
+            value={gifUrl}
+            onChange={handleGifyUrlChange}
+            placeholder={'GIFY link'}
+          />
+        </div>
+      </div>
       {!isFormValid && (
         <span className="validation-warning">*Required field</span>
       )}

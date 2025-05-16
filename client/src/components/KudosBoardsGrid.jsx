@@ -19,7 +19,9 @@ export default function BoardsGrid() {
     })
   }, [])
 
-  useEffect(() => reloadBoards, [])
+  useEffect(() => {
+    reloadBoards()
+  }, [])
 
   const onAddBoard = useCallback(() => {
     closeModal()

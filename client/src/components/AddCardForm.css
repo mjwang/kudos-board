@@ -36,6 +36,17 @@
   width: 200px;
 }
 
+.form-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.card-info, .card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .validation-warning {
   margin-top: 12px;
   color: red;
