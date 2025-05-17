@@ -56,6 +56,7 @@ export default function KudosBoardPage() {
                 author={card.author}
                 upvotes={card.upvoteCount}
                 handleReload={reloadBoardData}
+                gifUrl={card.gifUrl}
               />
             )
           })}

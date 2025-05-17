@@ -48,6 +48,11 @@
   gap: 8px;
 }
 
+.gif-preview {
+  height: 100px;
+  width: 100px;
+}
+
 .validation-warning {
   margin-top: 12px;
   color: red;

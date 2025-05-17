@@ -1,12 +1,15 @@
 import React, { useCallback, useMemo, useState } from 'react'
 
 import { addCard } from '../data/boardClient'
+import { getFirstGifySearchResult } from '../data/giphyClient'
+
 import './AddCardForm.css'
 
 export default function AddCardForm({ boardId, afterFormSubmit }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [gifUrl, setGifUrl] = useState('')
+  const [gifSearchQuery, setGifSearchQuery] = useState('')
+  const [gifUrl, setGifUrl] = useState(null)
   const [author, setAuthor] = useState('')
 
   const isFormValid = useMemo(
@@ -26,8 +29,15 @@ export default function AddCardForm({ boardId, afterFormSubmit }) {
     setDescription(event.target.value)
   }, [])
 
-  const handleGifyUrlChange = useCallback((event) => {
-    setGifUrl(event.target.value)
+  const handleGifySearchQueryChange = useCallback((event) => {
+    setGifSearchQuery(event.target.value)
+    if (event.target.value.length > 0) {
+      getFirstGifySearchResult(event.target.value).then((result) =>
+        setGifUrl(result),
+      )
+    } else {
+      setGifUrl(null)
+    }
   }, [])
 
   const handleCreateCard = useCallback((event) => {
@@ -56,8 +66,6 @@ export default function AddCardForm({ boardId, afterFormSubmit }) {
             onChange={handleAuthorChange}
             placeholder={'Author'}
           />
-        </div>
-        <div className="card-content">
           <label>Message*</label>
           <input
             className="text-box"
@@ -66,14 +74,17 @@ export default function AddCardForm({ boardId, afterFormSubmit }) {
             onChange={handleMessageChange}
             placeholder={'Message'}
           />
-          <label>Gif URL*</label>
+        </div>
+        <div className="card-content">
+          <label>GIF Search*</label>
           <input
             className="text-box"
             type="text"
-            value={gifUrl}
-            onChange={handleGifyUrlChange}
-            placeholder={'GIFY link'}
+            value={gifSearchQuery}
+            onChange={handleGifySearchQueryChange}
+            placeholder={'Search for a GIF...'}
           />
+          {gifUrl && <img className="gif-preview" src={gifUrl} alt="Gif" />}
         </div>
       </div>
       {!isFormValid && (

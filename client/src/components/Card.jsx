@@ -10,6 +10,7 @@ export default function Card({
   message,
   author,
   upvotes,
+  gifUrl,
   handleReload,
 }) {
   const [numUpvotes, setNumUpvotes] = useState(upvotes)
@@ -28,9 +29,12 @@ export default function Card({
       <div className="delete-icon" onClick={handleDelete}>
         +
       </div>
-      <strong>{title}</strong>
-      {author}
-      <p>{message}</p>
+      <div className="card-content">
+        <strong>{title}</strong>
+        <span>{message}</span>
+        <span>{author}</span>
+      </div>
+      {gifUrl && <img className="card-gif" src={gifUrl} alt="Gif" />}
       <button className="upvote-button" onClick={handleUpvote}>
         +{numUpvotes}
       </button>
