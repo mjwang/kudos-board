@@ -30,9 +30,13 @@ export default function Card({
         +
       </div>
       <div className="card-content">
-        <strong>{title}</strong>
+        <strong>
+          <u>{title}</u>
+        </strong>
         <span>{message}</span>
-        <span>{author}</span>
+        <span>
+          <strong>From:</strong> {author}
+        </span>
       </div>
       {gifUrl && <img className="card-gif" src={gifUrl} alt="Gif" />}
       <button className="upvote-button" onClick={handleUpvote}>
